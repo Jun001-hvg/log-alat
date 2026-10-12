@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Log Alat Suneeday</title>
+<script>
+/* Alamat lama. Pindah ke https://sun-log.github.io/ — QR lama tetap jalan.
+   Login yang sudah tersimpan di HP ikut dibawa, jadi tim tidak perlu login ulang. */
+(function(){
+  var NEW = 'https://sun-log.github.io/';
+  var q = new URLSearchParams(location.search);
+  try {
+    var a = JSON.parse(localStorage.getItem('logalat.auth.v1') || 'null');
+    if (!a) { var m = document.cookie.match(/(?:^|; )logalat_auth=([^;]*)/); if (m) a = JSON.parse(decodeURIComponent(m[1])); }
+    if (a && a.token && !q.get('login')) q.set('login', a.token);
+  } catch (e) {}
+  var s = q.toString();
+  location.replace(NEW + (s ? '?' + s : '') + location.hash);
+})();
+</script>
+</head>
+<body style="font-family:system-ui,sans-serif;padding:24px;text-align:center;">
+<p>Membuka <a href="https://sun-log.github.io/">sun-log.github.io</a>…</p>
+</body>
+</html>
